@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
 
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb+srv://coffeecodehub_db_user:2hUENhtWJrPJPkHQ@cluster0.yk53rnf.mongodb.net/?appName=Cluster0');
+    await mongoose.connect(process.env.MONGO_URI);
 
     console.log("MongoDB Connected");
   } catch (err) {
